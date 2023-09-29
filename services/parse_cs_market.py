@@ -1,12 +1,12 @@
 import requests
 from bs4 import BeautifulSoup
 
-from MarketItem import MarketItem
+from models.CsMarketItem import MarketItem
 
 market_url = "https://market-old.csgo.com/?s=pop&t=all&sd=desc&search="
 
 
-def parse_item(item_title: str):
+def parse_market_item(item_title: str):
     response = requests.get(market_url + item_title)
     soup = BeautifulSoup(response.content, 'html.parser')
 

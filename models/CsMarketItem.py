@@ -1,12 +1,12 @@
-class MarketItem:
-    title: str
-    price: str
+from models.MarketItem import MarketItem
+
+
+class CsMarketItem(MarketItem):
     image: str
-    link: str
 
     def __str__(self):
         return (
-            f"<Market item title:{self.title},"
+            f"<CS Market item title:{self.title},"
             f" price:{self.price},"
             f" image: {self.image},"
             f" link: {self.link}>"
