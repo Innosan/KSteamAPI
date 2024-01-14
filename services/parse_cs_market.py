@@ -17,13 +17,16 @@ def parse_market_item(item_title: str):
     souped_search_items = []
 
     market_items = soup.find("div", class_="market-items")
-    print(market_items)
-    print(soup)
+    # print(market_items)
+    # print(soup)
 
     if market_items is not None:
         souped_search_items = market_items.find_all("a", class_="item").copy()
     else:
-        return Error(404, "Failed to fetch item due to server error!")
+        return {
+            "status": False,
+            "error": Error(404, "Failed to fetch item due to server error!")
+        }
 
     for souped_item in souped_search_items:
         item = MarketItem()
@@ -37,4 +40,7 @@ def parse_market_item(item_title: str):
 
         items.append(item)
 
-    return [item.to_dict() for item in items]
+    return {
+        "status": True,
+        "items": [item.to_dict() for item in items]
+    }
