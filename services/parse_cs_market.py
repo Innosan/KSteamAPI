@@ -2,7 +2,7 @@ import requests
 from bs4 import BeautifulSoup
 from urllib.parse import quote
 
-from models.CsMarketItem import MarketItem
+from models.CsMarketItem import CsMarketItem
 from models.Error import Error
 
 market_search_url = "https://market-old.csgo.com/?s=pop&search="
@@ -29,7 +29,7 @@ def parse_market_item(item_title: str):
         }
 
     for souped_item in souped_search_items:
-        item = MarketItem()
+        item = CsMarketItem()
 
         item_image = (souped_item.find_next("div", class_="image")["style"].split("(")[1].split(")")[0])
 

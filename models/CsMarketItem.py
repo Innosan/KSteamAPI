@@ -1,8 +1,8 @@
-from models.MarketItem import MarketItem
-
-
-class CsMarketItem(MarketItem):
+class CsMarketItem:
     image: str
+    title: str
+    price: str
+    link: str
 
     def __str__(self):
         return (

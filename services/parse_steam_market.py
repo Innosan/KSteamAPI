@@ -1,6 +1,8 @@
 import requests
 
 from models.Error import Error
+from models.ItemType import ItemTypeManager
+from models.MarketApp import MarketApp
 from models.MarketItem import MarketItem
 
 market_url = "https://steamcommunity.com/market/search/render/?appid=730&norender=1&query="
@@ -28,11 +30,23 @@ def parse_steam_item(item_title: str):
             "error": Error(404, "Steam item parse failure!")
         }
 
-    item = MarketItem()
-    item.price = results["sell_price_text"]
-    item.title = results["name"]
+    item_assets = results["asset_description"]
+    item_type_manager = ItemTypeManager()
+
+    item = MarketItem(
+        title=results["name"],
+        price=results["sell_price_text"],
+        link="",
+        image=image_url + item_assets["icon_url"],
+        item_type=item_type_manager.get_type(item_assets["type"]),
+        app=MarketApp(
+            id=item_assets["appid"],
+            title=results["app_name"],
+            icon=results["app_icon"]
+        )
+    )
+
     item.link = steam_url + item.title
-    item.image = image_url + results["asset_description"]["icon_url"]
 
     return {
         "status": True,
