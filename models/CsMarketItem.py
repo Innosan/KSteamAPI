@@ -15,7 +15,7 @@ class CsMarketItem:
     def to_dict(self):
         cleaned_title = self.title.strip().replace("\n", "")
         cleaned_price = self.price.strip().replace(" ", "")
-        cleaned_link = "https://market-old.csgo.com" + self.link
+        cleaned_link = self.link
 
         # return a dictionary with the attributes of the object
         return {
