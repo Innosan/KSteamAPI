@@ -8,10 +8,10 @@ class ItemTypeManager:
 
     def __init__(self):
         self.item_types = {
-            "Covert Pistol": ItemType("Pistol", "dummy_icon_1"),
-            "Covert Rifle": ItemType("Weapon", "dummy_icon_2"),
-            "Base Grade Container": ItemType("Container", "dummy_icon_3"),
-            "Base Grade Key": ItemType("Key", "dummy_icon_4"),
+            "Covert Pistol": ItemType("Pistol", "i-mdi-pistol"),
+            "Covert Rifle": ItemType("Weapon", "i-game-icons-winchester-rifle"),
+            "Base Grade Container": ItemType("Container", "i-lucide-container"),
+            "Base Grade Key": ItemType("Key", "i-material-symbols-key-vertical-outline-rounded"),
         }
 
     def get_type(self, item_type_str: str):

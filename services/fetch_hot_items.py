@@ -1,33 +1,32 @@
 import requests
 
-from main import MARKET_URL
 from models.Error import Error
 from models.MarketItem import parse_api_item
 
+market_url = "https://steamcommunity.com/market/search/render/?norender=1&appid=730&count=5"
 
-def parse_steam_item(item_title: str):
+
+def fetch_hot_items():
     try:
-        response = requests.get(MARKET_URL + item_title)
+        response = requests.get(market_url)
     except:
         return {
             "status": False,
             "error": Error(400, "Steam request failure!")
         }
-    # print(response)
 
-    results = {}
+    results = []
 
     if response.json()['results']:
-        results = response.json()['results'][0]
+        results = response.json()['results']
     else:
         return {
             "status": False,
             "error": Error(404, "Steam item parse failure!")
         }
 
-    item = parse_api_item(results)
+    hot_items = []
+    for result in results:
+        hot_items.append(parse_api_item(result))
 
-    return {
-        "status": True,
-        "item": item.to_dict()
-    }
+    return hot_items
