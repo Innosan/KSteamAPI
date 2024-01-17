@@ -1,6 +1,9 @@
 # 🔑 KSteamAPI
 **API for an web/mobile app for checking prices and profits of the Steam Market items**
 
+## Start up project
+`uvicorn main:app --reload`
+
 ## ℹ️ Info
 The primary goal of this project is to empower CS:GO enthusiasts with a tool that simplifies the process of finding and accessing detailed information about CS:GO items. 
 

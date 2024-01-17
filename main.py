@@ -1,9 +1,26 @@
 from fastapi import FastAPI, Path
+from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
 
 from models.ItemType import ItemTypeManager
 
 app = FastAPI()
+
+origins = [
+    "http://localhost.tiangolo.com",
+    "https://localhost.tiangolo.com",
+    "http://localhost",
+    "http://localhost:3000",
+]
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
 item_type_manager = ItemTypeManager()
 
 MARKET_URL = "https://steamcommunity.com/market/search/render/?appid=730&norender=1&query="
