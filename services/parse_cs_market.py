@@ -31,12 +31,9 @@ def parse_market_item(item_title: str):
     for souped_item in souped_search_items:
         item = CsMarketItem()
 
-        item_image = (souped_item.find_next("div", class_="image")["style"].split("(")[1].split(")")[0])
-
         item.price = souped_item.find_next("div", class_="price").text
         item.title = souped_item.find_next("div", class_="name").text
         item.link = market_base_url + souped_item["href"]
-        item.image = item_image
 
         items.append(item)
 
