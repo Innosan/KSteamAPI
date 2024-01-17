@@ -6,7 +6,7 @@ from models.MarketApp import MarketApp
 class MarketItem:
     def __init__(self, title: str, price: str, link: str, image: str, item_type: ItemType, app: MarketApp):
         self.title = title
-        self.price = price
+        self.price = price.replace('$', '')
         self.link = link
         self.image = image
         self.item_type = item_type
